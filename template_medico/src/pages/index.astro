@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Dados dos produtos - edita aqui pra cada cliente novo
+const produtos = [
+  {
+    icone: "🧪",
+    titulo: "Reagentes Laboratoriais",
+    descricao:
+      "Linha completa de reagentes para bioquímica, hematologia e imunologia. Marcas certificadas pela ANVISA.",
+  },
+  {
+    icone: "💉",
+    titulo: "Descartáveis Clínicos",
+    descricao:
+      "Seringas, agulhas, luvas, gazes e EPIs. Alto volume com preço direto de fábrica.",
+  },
+  {
+    icone: "🔬",
+    titulo: "Equipamentos de Análise",
+    descricao:
+      "Centrifugas, microscópios, analisadores e autoclaves. Venda e locação com manutenção.",
+  },
+  {
+    icone: "🧼",
+    titulo: "Higienização e Limpeza",
+    descricao:
+      "Detergentes enzimáticos, álcool 70% e desinfetantes hospitalares homologados.",
+  },
+];
+
+const numWhatsapp = "5582999999999";
+---
+
+<Layout title="Proclin - Materiais para Clínicas e Laboratórios">
+  <!-- Header -->
+  <header class="absolute top-0 left-0 w-full z-10 py-6">
+    <div class="container mx-auto px-6">
+      <div class="flex items-center gap-2">
+        <svg
+          class="w-8 h-8 text-blue-600"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"
+          ></path>
+        </svg>
+        <span class="text-2xl font-bold text-slate-800">Proclin</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section Adaptada -->
+  <main>
+    <section
+      class="relative min-h-screen bg-white flex items-center overflow-hidden"
+    >
+      <div
+        class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Lado Esquerdo: Texto -->
+        <div class="z-10 py-24 lg:py-0">
+          <h1
+            class="text-5xl lg:text-6xl font-bold text-slate-800 leading-tight mb-6"
+          >
+            O melhor para <br /> sua clínica e laboratório
+          </h1>
+          <p class="text-lg text-slate-500 mb-8 max-w-md">
+            Materiais, reagentes e equipamentos com entrega rápida em todo
+            Nordeste. Qualidade ANVISA e preço de distribuidor.
+          </p>
+          <a
+            href={`https://wa.me/${numWhatsapp}?text=Olá!%20Quero%20um%20orçamento%20de%20materiais.`}
+            target="_blank"
+            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-md transition-colors shadow-lg shadow-blue-500/30"
+          >
+            SOLICITAR ORÇAMENTO
+          </a>
+          <p class="text-sm text-slate-400 mt-4">
+            Atendimento em até 1h útil no WhatsApp
+          </p>
+        </div>
+
+        <!-- Lado Direito: Imagem -->
+        <!-- Lado Direito: Imagem - versão simples -->
+        <div class=" lg:block absolute top-0 right-0 h-full w-1/2">
+          <div class="relative h-full w-full">
+            <img
+              src="/lab-materiais.jpg"
+              alt="Laboratório"
+              class="h-full w-full object-cover object-center rounded-tl-3xl"
+            />
+            <!-- Onda só na parte de baixo -->
+            <div
+              class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] rotate-180"
+            >
+              <svg
+                class="relative block w-[calc(100%+1.3px)] h-[80px]"
+                viewBox="0 0 1200 120"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                  fill="#ffffff"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOVA SEÇÃO: Nossos Produtos -->
+    <section id="produtos" class="py-16 lg:py-24 bg-slate-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+            Nossas Linhas de Produtos
+          </h2>
+          <p class="text-lg text-slate-500">
+            Trabalhamos só com marcas aprovadas e certificadas. Estoque a pronta
+            entrega.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            produtos.map((produto) => {
+              const msg = `Olá! Tenho interesse em: ${produto.titulo}`;
+              const linkWpp = `https://wa.me/${numWhatsapp}?text=${encodeURIComponent(msg)}`;
+
+              return (
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all">
+                  <div class="text-4xl mb-4">{produto.icone}</div>
+                  <h3 class="text-xl font-bold text-slate-800 mb-3">
+                    {produto.titulo}
+                  </h3>
+                  <p class="text-slate-500 mb-6 flex-grow">
+                    {produto.descricao}
+                  </p>
+                  <a
+                    href={linkWpp}
+                    target="_blank"
+                    class="mt-auto block w-full text-center bg-slate-800 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors"
+                  >
+                    Pedir Cotação
+                  </a>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Confiança/Selo -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div>
+            <p class="text-4xl font-bold text-blue-600">+500</p>
+            <p class="text-slate-500">Clínicas Atendidas</p>
+          </div>
+          <div>
+            <p class="text-4xl font-bold text-blue-600">24h</p>
+            <p class="text-slate-500">Entrega em Maceió</p>
+          </div>
+          <div>
+            <p class="text-4xl font-bold text-blue-600">100%</p>
+            <p class="text-slate-500">Produtos ANVISA</p>
+          </div>
+          <div>
+            <p class="text-4xl font-bold text-blue-600">5 Anos</p>
+            <p class="text-slate-500">No Mercado</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer simples -->
+  <footer class="bg-slate-800 text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p class="font-bold text-lg mb-2">Proclin</p>
+      <p class="text-slate-400 text-sm">
+        CNPJ 00.000.000/0001-00 | Maceió - AL
+      </p>
+    </div>
+  </footer>
+</Layout>

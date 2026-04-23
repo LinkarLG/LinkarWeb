@@ -1,0 +1,37 @@
+---
+import '@fontsource/montserrat/400.css'; // Regular
+import '@fontsource/montserrat/500.css'; // Medium  
+import '@fontsource/montserrat/600.css'; // Semi-bold
+import '@fontsource/montserrat/700.css'; // Bold
+import '../styles/global.css';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="font-sans bg-white">
+    <slot />
+      <!-- Botão do WhatsApp em todas as páginas -->
+    <WhatsAppButton 
+      phone="558298181807" 
+      message="Olá, vi o site e quero fazer um orçamento" 
+    />
+  </body>
+</html>
+
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+</style>
